@@ -81,6 +81,8 @@ class Post(Base):
             }
         
 
-
-engine = create_engine(os.environ.get('FLASK_API_DB'))
+if os.environ.get('HEROKU') is not None:
+    engine = create_engine(''.join([os.environ.get('DATABASE_PREFIX'),os.environ.get('DATABASE_URL').split('//')[1]]))
+else:   
+    engine = create_engine(os.environ.get('FLASK_API_DB'))
 Base.metadata.create_all(engine)

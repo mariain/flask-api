@@ -12,7 +12,10 @@ import math, os
 per_page = 5
 auth = HTTPBasicAuth()
 
-engine = create_engine(os.environ.get('FLASK_API_DB'))
+if os.environ.get('HEROKU') is not None:
+    engine = create_engine(''.join([os.environ.get('DATABASE_PREFIX'),os.environ.get('DATABASE_URL').split('//')[1]]))
+else:    
+    engine = create_engine(os.environ.get('FLASK_API_DB'))
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -20,7 +23,7 @@ app = Flask(__name__)
 
 @app.after_request
 def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5001'
+    response.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'OPTIONS':
         response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT, PATCH'
         response.headers['Access-Control-Allow-Headers'] = 'authorization'
