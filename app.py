@@ -13,7 +13,7 @@ per_page = 5
 auth = HTTPBasicAuth()
 
 if os.environ.get('HEROKU') is not None:
-    engine = create_engine(''.join([os.environ.get('DATABASE_PREFIX'),os.environ.get('DATABASE_URL').split('//')[1]]))
+    engine = create_engine(''.join(["postgresql+psycopg2:",os.environ.get('DATABASE_URL').split(':')[1]]))
 else:    
     engine = create_engine(os.environ.get('FLASK_API_DB'))
 Base.metadata.bind = engine
