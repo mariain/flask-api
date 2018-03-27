@@ -70,6 +70,7 @@ class Post(Base):
                 'liked' : True if self.user_id in self.likes else False
             }
         else:
+            print(self.user.username)
             return {
                 'id' : self.id,
                 'user_id' : self.user_id,
