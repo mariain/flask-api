@@ -103,3 +103,5 @@ flask-env/
 
 # mypy
 .mypy_cache/
+
+# static/
