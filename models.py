@@ -67,7 +67,7 @@ class Post(Base):
                 'likes' : len(self.likes),
                 'created_at' : self.created_at,
                 'author': {'username': self.user.username, 'avatar': "http://" + request.host + "/static/images/" + self.user.avatar},
-                'liked' : True if self.user_id in self.likes
+                'liked' : True if self.user_id in self.likes else False
             }
         else:
             return {
