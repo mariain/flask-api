@@ -26,7 +26,7 @@ def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'OPTIONS':
         response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT, PATCH'
-        response.headers['Access-Control-Allow-Headers'] = 'authorization'
+        response.headers['Access-Control-Allow-Headers'] = 'authorization, content-type'
     return response
 
 @auth.verify_password
