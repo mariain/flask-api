@@ -11,7 +11,7 @@ Base = declarative_base()
 secret_key = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     __table_args__ = {'schema':'api'}
     id = Column(Integer, primary_key=True)
     username = Column(String(32), index=True)
@@ -46,7 +46,7 @@ class User(Base):
         return user_id
 
 class Post(Base):
-    __tablename__ = 'post'
+    __tablename__ = 'posts'
     __table_args__ = {'schema':'api'}
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("api.user.id"))
