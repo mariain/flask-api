@@ -37,10 +37,10 @@ class User(Base):
         	data = s.loads(token)
         except SignatureExpired:
     		#Valid Token, but expired
-            return None
+          return None
         except BadSignature:
     		#Invalid Token
-            return None
+          return None
         
         user_id = data['id']
         return user_id
@@ -49,7 +49,7 @@ class Post(Base):
     __tablename__ = 'posts'
     __table_args__ = {'schema':'api'}
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("api.user.id"))
+    user_id = Column(Integer, ForeignKey("api.users.id"))
     text = Column(String)
     likes = Column(ARRAY(Integer))
     created_at = Column(DateTime)
