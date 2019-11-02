@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 Flask_HTTPAuth==3.2.3
 SQLAlchemy==1.1.13
 gunicorn==19.7.1
